@@ -7,7 +7,7 @@ const { client_id, client_secret } = require('./local/auth')
 const qs = require('qs')
 
 app.get('/', (req, res) => {
-  res.send('<a href="https://github.com/login/oauth/authorize?client_id=8b4aa2645c8e1c34b658">auth</a>')
+  res.send(`<a href="https://github.com/login/oauth/authorize?client_id=${client_id}">auth</a>`)
 })
 
 app.get('/github-oauth-callback', async (req, res) => {
