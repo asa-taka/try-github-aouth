@@ -17,12 +17,16 @@ app.get('/github-oauth-callback', async (req, res) => {
   const resForToken = await client('https://github.com/login/oauth/access_token', {
     params: { code, client_id, client_secret },
   })
+
+  // parse "access_token=...?scope=...?tokey_type=..."
   const { access_token } = qs.parse(resForToken.data)
 
-  // get user profile by access-token
+  // get user-profile by access-token
   const resForUserProfile = await client('https://api.github.com/user', {
     params: { access_token },
   })
+
+  // response user-profile
   res.send(resForUserProfile.data)
 })
 
